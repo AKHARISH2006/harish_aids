@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Websites - My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #fafafa;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(219, 234, 254, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(229, 231, 235, 0.3) 0%, transparent 50%);
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+            border-bottom: 1px solid #e0e0e0;
+            padding: 2em 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::after {
+            content: '🎥';
+            position: absolute;
+            font-size: 5em;
+            opacity: 0.05;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        
+        header h1 {
+            font-size: 2em;
+            font-weight: 500;
+            margin-bottom: 1em;
+            background: linear-gradient(135deg, #222 0%, #555 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            gap: 2em;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            padding: 0.5em 1em;
+            border-radius: 3px;
+        }
+        
+        nav ul li a:hover {
+            color: #222;
+            background: linear-gradient(135deg, #e8f0ff 0%, #f0e8ff 100%);
+        }
+        
+        nav ul li a.active {
+            color: #222;
+            font-weight: 600;
+            background: linear-gradient(135deg, #dbe4ff 0%, #ede4ff 100%);
+            border: 1px solid #c5d4ff;
+        }
+        
+        main {
+            max-width: 800px;
+            margin: 3em auto;
+            padding: 0 2em;
+            padding-bottom: 3em;
+            position: relative;
+        }
+        
+        main::before {
+            content: '🌐';
+            position: absolute;
+            font-size: 10em;
+            opacity: 0.04;
+            right: -50px;
+            bottom: 100px;
+            pointer-events: none;
+        }
+        
+        section {
+            margin-bottom: 3em;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
+            padding: 3em 2em;
+            border-radius: 2px;
+            border: 1px solid #d9e9f7;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, rgba(44, 90, 127, 0.4), rgba(108, 92, 149, 0.4));
+        }
+        
+        section h2 {
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 1.5em;
+            color: #1a3a52;
+            position: relative;
+            z-index: 1;
+        }
+        
+        section h3 {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-top: 1.5em;
+            margin-bottom: 0.8em;
+            color: #2c5a7f;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .websites-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5em;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .website-card {
+            background: linear-gradient(135deg, #f5f9ff 0%, #e8f0ff 100%);
+            padding: 1.5em;
+            border-radius: 5px;
+            border: 1px solid #d0deff;
+            transition: all 0.3s ease;
+        }
+        
+        .website-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(44, 90, 127, 0.15);
+            border-color: #b8c9ff;
+        }
+        
+        .website-card h4 {
+            font-size: 1.1em;
+            color: #1a3a52;
+            margin-bottom: 0.8em;
+            font-weight: 600;
+        }
+        
+        .website-card p {
+            font-size: 0.95em;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1em;
+        }
+        
+        .website-card a {
+            color: #2c5a7f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .website-card a:hover {
+            color: #1a3a52;
+            text-decoration: underline;
+        }
+        
+        .category {
+            margin-bottom: 2.5em;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .websites::after {
+            content: '💻';
+            position: absolute;
+            font-size: 2.5em;
+            opacity: 0.08;
+            left: 1em;
+            bottom: 1em;
+        }
+        
+        .footer {
+            background-color: white;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+            text-align: center;
+            padding: 2em;
+            margin-top: 3em;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 1024px) {
+            main {
+                max-width: 100%;
+            }
+            
+            section {
+                padding: 1.8em;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                background-image: 
+                    radial-gradient(circle at 20% 50%, rgba(219, 234, 254, 0.2) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(229, 231, 235, 0.2) 0%, transparent 50%);
+            }
+            
+            header h1 {
+                font-size: 1.5em;
+            }
+            
+            header::after {
+                font-size: 3em;
+            }
+            
+            nav ul {
+                gap: 0.8em;
+                flex-direction: column;
+            }
+            
+            main {
+                max-width: 100%;
+                margin: 1.5em auto;
+                padding: 0 1em;
+                padding-bottom: 2em;
+            }
+            
+            main::before {
+                font-size: 5em;
+                right: -30px;
+                bottom: 50px;
+            }
+            
+            section {
+                padding: 1.2em;
+                margin-bottom: 1.5em;
+            }
+            
+            section h2 {
+                font-size: 1.3em;
+            }
+            
+            .websites-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer {
+                padding: 1.2em;
+                font-size: 0.85em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.2em;
+            }
+            
+            header {
+                padding: 1em 0;
+            }
+            
+            nav ul {
+                gap: 0.6em;
+                flex-direction: column;
+            }
+            
+            nav ul li a {
+                font-size: 0.8em;
+                padding: 0.3em 0.7em;
+            }
+            
+            main {
+                margin: 1em auto;
+                padding: 0 0.7em;
+            }
+            
+            section {
+                padding: 1em;
+                margin-bottom: 1.2em;
+            }
+            
+            section h2 {
+                font-size: 1.1em;
+            }
+            
+            section h3 {
+                font-size: 1em;
+            }
+            
+            .website-card {
+                padding: 1.2em;
+            }
+            
+            .website-card h4 {
+                font-size: 1em;
+            }
+            
+            .footer {
+                padding: 1em;
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Portfolio</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="websites.html" class="active">Websites</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="websites">
+            <h2>Websites I Know</h2>
+            <p>A comprehensive collection of platforms, tools, and services that I'm proficient in and regularly use for video creation, editing, and content management.</p>
+            
+            <div class="category">
+                <h3>Video Editing & Creation</h3>
+                <div class="websites-list">
+                    <div class="website-card">
+                        <h4>Adobe Premiere Pro</h4>
+                        <p>Professional video editing software for creating high-quality films, documentaries, and promotional videos with advanced editing capabilities.</p>
+                        <a href="https://www.adobe.com/products/premiere.html" target="_blank">Visit Adobe Premiere Pro →</a>
+                    </div>
+                    <div class="website-card">
+                        <h4>DaVinci Resolve</h4>
+                        <p>Comprehensive video editing and color correction software offering professional-grade tools with free and studio versions available.</p>
+                        <a href="https://www.blackmagicdesign.com/products/davinciresolve/" target="_blank">Visit DaVinci Resolve →</a>
+                    </div>
+                    <div class="website-card">
+                        <h4>Final Cut Pro</h4>
+                        <p>Mac-based professional video editing software known for its speed, efficiency, and advanced color grading capabilities.</p>
+                        <a href="https://www.apple.com/final-cut-pro/" target="_blank">Visit Final Cut Pro →</a>
+                    </div>
+                    <div class="website-card">
+                        <h4>After Effects</h4>
+                        <p>Motion graphics and visual effects software for creating animated titles, transitions, and complex visual compositions.</p>
+                        <a href="https://www.adobe.com/products/aftereffects.html" target="_blank">Visit After Effects →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <h3>Content Distribution & Social Media</h3>
+                <div class="websites-list">
+                    <div class="website-card">
+                        <h4>YouTube</h4>
+                        <p>The world's largest video platform for uploading, sharing, and monetizing video content with millions of daily active users.</p>
+                        <a href="https://www.youtube.com/" target="_blank">Visit YouTube →</a>
+                    </div>
+                    <div class="website-card">
+                        <h4>Instagram</h4>
+                        <p>Social media platform perfect for sharing reels, stories, and short-form video content to engage with audiences visually.</p>
+                        <a href="https://www.instagram.com/" target="_blank">Visit Instagram →</a>
+                    </div>
+                    <div class="website-card">
+                        <h4>TikTok</h4>
+                        <p>Popular short-form video platform ideal for creating trend-driven content and reaching younger audiences with creative videos.</p>
+                        <a href="https://www.tiktok.com/" target="_blank">Visit TikTok →</a>
+                    </div>
+                    <div class="website-card">
+                        <h4>Vimeo</h4>
+                        <p>Professional video hosting platform focused on quality streaming and advanced privacy controls for creators and businesses.</p>
+                        <a href="https://www.vimeo.com/" target="_blank">Visit Vimeo →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <h3>Design & Graphics Tools</h3>
+                <div class="websites-list">
+                    <div class="website-card">
+                        <h4>Canva</h4>
+                        <p>User-friendly design tool for creating graphics, thumbnails, posters, and social media content with pre-made templates.</p>
+                        <a href="https://www.canva.com/" target="_blank">Visit Canva →</a>
+                    </div>
+                    <div class="website-card">
+                        <h4>Figma</h4>
+                        <p>Collaborative web-based design tool for UI/UX design, prototyping, and creative layouts with real-time team collaboration.</p>
+                        <a href="https://www.figma.com/" target="_blank">Visit Figma →</a>
+                    </div>
+                    <div class="website-card">
+                        <h4>Photoshop</h4>
+                        <p>Industry-standard image editing software for retouching, color correction, and creating visual assets for video projects.</p>
+                        <a href="https://www.adobe.com/products/photoshop.html" target="_blank">Visit Photoshop →</a>
+                    </div>
+                    <div class="website-card">
+                        <h4>Illustrator</h4>
+                        <p>Vector graphics editor for creating scalable logos, icons, and illustrations for use in video projects and branding.</p>
+                        <a href="https://www.adobe.com/products/illustrator.html" target="_blank">Visit Illustrator →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <h3>Audio & Music</h3>
+                <div class="websites-list">
+                    <div class="website-card">
+                        <h4>Adobe Audition</h4>
+                        <p>Professional audio editing and mixing software for sound design, voice editing, and music production.</p>
+                        <a href="https://www.adobe.com/products/audition.html" target="_blank">Visit Adobe Audition →</a>
+                    </div>
+                    <div class="website-card">
+                        <h4>Epidemic Sound</h4>
+                        <p>Royalty-free music and sound effects library offering unlimited downloads for video creators and content makers.</p>
+                        <a href="https://www.epidemicsound.com/" target="_blank">Visit Epidemic Sound →</a>
+                    </div>
+                    <div class="website-card">
+                        <h4>Artlist</h4>
+                        <p>Curated royalty-free music and SFX subscription service designed specifically for video creators and filmmakers.</p>
+                        <a href="https://artlist.io/" target="_blank">Visit Artlist →</a>
+                    </div>
+                    <div class="website-card">
+                        <h4>Spotify</h4>
+                        <p>Music streaming platform for finding royalty-free tracks and understanding current music trends for content.</p>
+                        <a href="https://www.spotify.com/" target="_blank">Visit Spotify →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <h3>Collaboration & Project Management</h3>
+                <div class="websites-list">
+                    <div class="website-card">
+                        <h4>Google Drive</h4>
+                        <p>Cloud storage and collaboration platform for sharing files, storing projects, and real-time team collaboration.</p>
+                        <a href="https://www.google.com/drive/" target="_blank">Visit Google Drive →</a>
+                    </div>
+                    <div class="website-card">
+                        <h4>Slack</h4>
+                        <p>Team communication platform for coordinating with clients and collaborators on editing projects and feedback.</p>
+                        <a href="https://www.slack.com/" target="_blank">Visit Slack →</a>
+                    </div>
+                    <div class="website-card">
+                        <h4>Trello</h4>
+                        <p>Project management tool for organizing tasks, timelines, and workflows for video production projects.</p>
+                        <a href="https://www.trello.com/" target="_blank">Visit Trello →</a>
+                    </div>
+                    <div class="website-card">
+                        <h4>GitHub</h4>
+                        <p>Version control and collaboration platform used for managing code, scripts, and technical project resources.</p>
+                        <a href="https://www.github.com/" target="_blank">Visit GitHub →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <div class="footer">
+        <p>&copy; 2024 My Portfolio. All rights reserved. | Designed & Edited with Passion</p>
+    </div>
+</body>
+</html>

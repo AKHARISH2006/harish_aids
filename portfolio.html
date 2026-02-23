@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #fafafa;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(219, 234, 254, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(229, 231, 235, 0.3) 0%, transparent 50%);
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        header {
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 2em 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::after {
+            content: '🎥';
+            position: absolute;
+            font-size: 5em;
+            opacity: 0.05;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        
+        header h1 {
+            font-size: 2em;
+            font-weight: 500;
+            margin-bottom: 1em;
+            color: #222;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            gap: 2em;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: color 0.2s;
+        }
+        
+        nav ul li a:hover {
+            color: #222;
+        }
+        
+        main {
+            max-width: 800px;
+            margin: 3em auto;
+            padding: 0 2em;
+            padding-bottom: 3em;
+            position: relative;
+        }
+        
+        main::before {
+            content: '🎬';
+            position: absolute;
+            font-size: 10em;
+            opacity: 0.04;
+            right: -50px;
+            bottom: 100px;
+            pointer-events: none;
+        }
+        
+        section {
+            margin-bottom: 3em;
+            background: white;
+            padding: 2em;
+            border-radius: 2px;
+            border: 1px solid #e0e0e0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, rgba(219, 234, 254, 0.5), rgba(229, 231, 235, 0.5));
+        }
+        
+        section h2 {
+            font-size: 1.4em;
+            font-weight: 500;
+            margin-bottom: 1em;
+            color: #222;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5em;
+            border: 3px solid #222;
+        }
+        
+        .about p {
+            font-size: 0.95em;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .about::after {
+            content: '📽️';
+            position: absolute;
+            font-size: 2.5em;
+            opacity: 0.08;
+            right: 1em;
+            bottom: 1em;
+        }
+        
+        .projects p {
+            color: #666;
+            margin-bottom: 1.2em;
+            font-size: 0.95em;
+        }
+        
+        .projects::after {
+            content: '✂️';
+            position: absolute;
+            font-size: 2.5em;
+            opacity: 0.08;
+            right: 1em;
+            top: 1em;
+        }
+        
+        .projects a {
+            display: inline-block;
+            background-color: #222;
+            color: white;
+            text-decoration: none;
+            padding: 0.6em 1.5em;
+            border-radius: 2px;
+            font-size: 0.9em;
+            transition: background-color 0.2s;
+        }
+        
+        .projects a:hover {
+            background-color: #444;
+        }
+        
+        .contact p {
+            font-size: 0.95em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+        
+        .contact a {
+            color: #222;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .contact a:hover {
+            color: #666;
+        }
+        
+        .contact::after {
+            content: '🎞️';
+            position: absolute;
+            font-size: 2.5em;
+            opacity: 0.08;
+            left: 1em;
+            bottom: 1em;
+        }
+        
+        .footer {
+            background-color: white;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+            text-align: center;
+            padding: 2em;
+            margin-top: 3em;
+            font-size: 0.9em;
+        }
+        
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1em;
+            margin-top: 1.5em;
+        }
+        
+        .skill-tag {
+            background-color: #f0f0f0;
+            padding: 0.5em 1em;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #555;
+            text-align: center;
+        }
+        
+        @media (max-width: 1024px) {
+            main {
+                max-width: 100%;
+            }
+            
+            section {
+                padding: 1.8em;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                background-image: 
+                    radial-gradient(circle at 20% 50%, rgba(219, 234, 254, 0.2) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(229, 231, 235, 0.2) 0%, transparent 50%);
+            }
+            
+            header h1 {
+                font-size: 1.6em;
+            }
+            
+            header::after {
+                font-size: 3em;
+            }
+            
+            nav ul {
+                gap: 1em;
+                flex-direction: column;
+            }
+            
+            main {
+                max-width: 100%;
+                margin: 1.5em auto;
+                padding: 0 1em;
+                padding-bottom: 2em;
+            }
+            
+            main::before {
+                font-size: 5em;
+                right: -30px;
+                bottom: 50px;
+            }
+            
+            section {
+                padding: 1.2em;
+                margin-bottom: 1.5em;
+            }
+            
+            section h2 {
+                font-size: 1.2em;
+            }
+            
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .skills {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.7em;
+            }
+            
+            .skill-tag {
+                font-size: 0.85em;
+                padding: 0.4em 0.8em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.3em;
+            }
+            
+            header {
+                padding: 1.2em 0;
+            }
+            
+            nav ul {
+                gap: 0.8em;
+            }
+            
+            nav ul li a {
+                font-size: 0.85em;
+            }
+            
+            main {
+                margin: 1em auto;
+                padding: 0 0.8em;
+            }
+            
+            section {
+                padding: 1em;
+                margin-bottom: 1.2em;
+            }
+            
+            section h2 {
+                font-size: 1.1em;
+            }
+            
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .footer {
+                padding: 1.2em;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Portfolio</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="home">
+        <section class="about">
+            <img src="profile.jpg" alt="Profile Photo" class="profile-img">
+            <h2>About Me</h2>
+            <p>Creative and skilled video editor with a passion for transforming raw footage into compelling visual narratives. Experienced in producing high-quality reels and short films across diverse platforms, with a focus on visual storytelling that engages and captivates audiences. Known for meticulous attention to detail, creative problem-solving, and delivering projects that exceed client expectations.</p>
+            
+            <h3 style="font-size: 1.1em; margin-top: 1.5em; margin-bottom: 0.8em; color: #333;">Core Expertise</h3>
+            <div class="skills">
+                <div class="skill-tag">Video Editing</div>
+                <div class="skill-tag">Reel Production</div>
+                <div class="skill-tag">Color Grading</div>
+                <div class="skill-tag">Motion Graphics</div>
+                <div class="skill-tag">Sound Design</div>
+                <div class="skill-tag">Short Films</div>
+            </div>
+        </section>
+
+        <section class="projects">
+            <h2>Project 1: Instagram Reel</h2>
+            <p>Creative reel editing showcasing dynamic transitions and engaging visual effects. Demonstrates proficiency in fast-paced editing techniques tailored for social media platforms, with emphasis on audience retention and trending formats.</p>
+            <a href="https://www.instagram.com/reel/DUk5UIjiDmN/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==">View on Instagram</a>
+        </section>
+        
+        <section class="projects">
+            <h2>Project 2: Short Film</h2>
+            <p>Award-winning short film editing demonstrating advanced color grading, sophisticated transitions, and professional sound mixing. This project earned 2nd Prize recognition for excellence in cinematography and editing, highlighting professional-grade production quality.</p>
+            <a href="https://drive.google.com/file/d/14B-6xpmYJWtugLtgsdNBXZ3bxDrPUJgc/view?usp=drive_link">View Project</a>
+        </section>
+        
+        <section class="contact" id="contact">
+            <h2>Get in Touch</h2>
+            <p style="margin-bottom: 1.5em; color: #666;">Ready to discuss your project or collaborate? I'd love to hear from you. Reach out through any of the channels below.</p>
+            <p style="margin-bottom: 0.8em;"><strong>Email:</strong> <a href="mailto:harishharishaaaa@gmail.com">harishharishaaaa@gmail.com</a></p>
+            <p><strong>Phone:</strong> <a href="tel:+916364232959">+91 6364232959</a></p>
+        </section>
+    </main>
+    
+    <div class="footer">
+        <p>&copy; 2024 My Portfolio. All rights reserved. | Designed & Edited with Passion</p>
+    </div>
+</html>
